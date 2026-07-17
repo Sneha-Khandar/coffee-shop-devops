@@ -2,15 +2,22 @@ pipeline {
     agent any
 
     stages {
-        stage('Welcome') {
+
+        stage('Clone Code') {
             steps {
-                echo 'Hello Sneha! Welcome to Jenkins.'
+                echo 'Code downloaded successfully.'
             }
         }
 
-        stage('List Files') {
+        stage('Build Docker Image') {
             steps {
-                bat 'dir'
+                bat 'docker build -t coffee-shop:v1 .'
+            }
+        }
+
+        stage('Docker Images') {
+            steps {
+                bat 'docker images'
             }
         }
     }
